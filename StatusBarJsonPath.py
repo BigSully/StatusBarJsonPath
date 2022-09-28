@@ -16,7 +16,9 @@ class StatusBarJsonPath(sublime_plugin.EventListener):
 	def update_json_path(self, view):
 		json_paths = get_json_path(view)
 		if len(json_paths):
-			view.set_status(self.KEY_SIZE, "JSONPath: " + ", ".join(json_paths))
+			txt=">> root." + json_paths[0]
+			spaces=' ' * ( 200 - len(txt))
+			view.set_status(self.KEY_SIZE, txt + spaces)
 		else:
 			view.erase_status(self.KEY_SIZE)
 
